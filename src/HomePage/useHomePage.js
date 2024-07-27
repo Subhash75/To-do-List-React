@@ -18,6 +18,7 @@ function useHomePage() {
     taskDescription: "",
   });
   const [tasks, setTasks] = useState(LSTaskList);
+  const [removeIndex, setRemoveIndex] = useState(null)
 
   const handleModalState = ({ title = "", taskId = null }) => {
     setModalState((prevState) => ({
@@ -60,6 +61,7 @@ function useHomePage() {
       const newState = [...JSON.parse(JSON.stringify(prevState))];
       newState[index].isComplete = e.target.checked;
 
+      localStorage.setItem("tasks", JSON.stringify(newState));
       return newState;
     });
   };
@@ -143,9 +145,39 @@ function useHomePage() {
     }
   };
 
+  const handleRemoveTask = ({ index }) => {
+    setRemoveIndex(index)
+
+    setTimeout(() => {
+      setRemoveIndex(null)
+      setTasks(prevState => {
+        const filteredTasks = prevState.filter((_, taskIndex) => taskIndex !== index)
+
+        localStorage.setItem("tasks", JSON.stringify(filteredTasks));
+        return filteredTasks
+      })
+    }, 500)
+  }
+
+  const handleOnDragEnd = (result) => {
+    console.log(result)
+    if (!result.destination) return;
+
+
+    const updatedTasks = Array.from(tasks);
+    const [movedTask] = updatedTasks.splice(result.source.index, 1);
+    updatedTasks.splice(result.destination.index, 0, movedTask);
+
+
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setTasks(updatedTasks)
+  };
+
+
   return {
     tasks,
     modalState,
+    removeIndex,
     handleModalState,
     handleTaskPriority,
     handleTaskSubmit,
@@ -153,6 +185,8 @@ function useHomePage() {
     handleTaskComplete,
     handleTaskEdit,
     handleTaskUpdate,
+    handleRemoveTask,
+    handleOnDragEnd
   };
 }
 

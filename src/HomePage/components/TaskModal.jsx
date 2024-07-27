@@ -62,7 +62,7 @@ function TaskModal({
                             <button
                                 onClick={() => handleTaskPriority({ taskPriority: "Intermediate" })}
                                 className={`border bg-white px-5 py-2 rounded-lg ${taskPriority === "Intermediate"
-                                    ? "text-white bg-tertiary"
+                                    ? "text-white !bg-tertiary"
                                     : "border-tertiary text-tertiary"
                                     }`}
                             >
@@ -71,7 +71,7 @@ function TaskModal({
                             <button
                                 onClick={() => handleTaskPriority({ taskPriority: "Basic" })}
                                 className={`border bg-white px-5 py-2 rounded-lg ${taskPriority === "Basic"
-                                    ? "text-white bg-green-500"
+                                    ? "text-white !bg-green-500"
                                     : "border-green-500 text-green-500"
                                     }`}
                             >

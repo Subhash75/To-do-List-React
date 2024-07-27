@@ -7,13 +7,16 @@ function HomePage() {
     const {
         tasks,
         modalState,
+        removeIndex,
         handleModalState,
         handleTaskPriority,
         handleTaskSubmit,
         handleTaskComplete,
         handleInputChange,
         handleTaskEdit,
-        handleTaskUpdate
+        handleTaskUpdate,
+        handleRemoveTask,
+        handleOnDragEnd
     } = useHomePage();
 
     return (
@@ -25,11 +28,14 @@ function HomePage() {
                 ></div>
                 <MainBodySection
                     tasks={tasks}
+                    removeIndex={removeIndex}
                     handleModalState={handleModalState}
                     handleInputChange={handleInputChange}
                     handleTaskPriority={handleTaskPriority}
                     handleTaskComplete={handleTaskComplete}
                     handleTaskEdit={handleTaskEdit}
+                    handleRemoveTask={handleRemoveTask}
+                    handleOnDragEnd={handleOnDragEnd}
                 />
             </main>
             {modalState.isOpen && (

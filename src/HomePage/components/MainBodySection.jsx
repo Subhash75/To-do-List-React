@@ -3,11 +3,14 @@ import TaskListing from "./TaskListing";
 
 function MainBodySection({
     tasks,
+    removeIndex,
     handleModalState,
     handleTaskPriority,
     handleInputChange,
     handleTaskComplete,
     handleTaskEdit,
+    handleRemoveTask,
+    handleOnDragEnd
 }) {
     return (
         <div className="fixed px-3 py-5 w-[75%] h-[80%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white shadow-xl rounded-xl">
@@ -28,8 +31,11 @@ function MainBodySection({
             </div>
             <TaskListing
                 tasks={tasks}
+                removeIndex={removeIndex}
                 handleTaskComplete={handleTaskComplete}
                 handleTaskEdit={handleTaskEdit}
+                handleRemoveTask={handleRemoveTask}
+                handleOnDragEnd={handleOnDragEnd}
             />
         </div>
     );
