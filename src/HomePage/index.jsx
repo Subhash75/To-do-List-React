@@ -1,4 +1,5 @@
 import RedBg from "../assets/images/red_bg.jpg";
+import DeleteAllPopup from "./components/DeleteAllPopup";
 import MainBodySection from "./components/MainBodySection";
 import TaskModal from "./components/TaskModal";
 import useHomePage from "./useHomePage";
@@ -8,6 +9,7 @@ function HomePage() {
         tasks,
         modalState,
         removeIndex,
+        isDeleteAllModalOpen,
         handleModalState,
         handleTaskPriority,
         handleTaskSubmit,
@@ -16,6 +18,9 @@ function HomePage() {
         handleTaskEdit,
         handleTaskUpdate,
         handleRemoveTask,
+        handleMarkAllComplete,
+        handleDeleteAll,
+        handleToggleDeleteAllModalState,
         handleOnDragEnd
     } = useHomePage();
 
@@ -35,6 +40,8 @@ function HomePage() {
                     handleTaskComplete={handleTaskComplete}
                     handleTaskEdit={handleTaskEdit}
                     handleRemoveTask={handleRemoveTask}
+                    handleMarkAllComplete={handleMarkAllComplete}
+                    handleToggleDeleteAllModalState={handleToggleDeleteAllModalState}
                     handleOnDragEnd={handleOnDragEnd}
                 />
             </main>
@@ -52,6 +59,10 @@ function HomePage() {
                     handleTaskUpdate={handleTaskUpdate}
                 />
             )}
+            {isDeleteAllModalOpen && <DeleteAllPopup
+                handleToggleDeleteAllModalState={handleToggleDeleteAllModalState}
+                handleDeleteAll={handleDeleteAll}
+            />}
         </>
     );
 }

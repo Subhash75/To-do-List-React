@@ -18,7 +18,8 @@ function useHomePage() {
     taskDescription: "",
   });
   const [tasks, setTasks] = useState(LSTaskList);
-  const [removeIndex, setRemoveIndex] = useState(null)
+  const [removeIndex, setRemoveIndex] = useState(null);
+  const [isDeleteAllModalOpen, setIsDeleteAllModalOpen] = useState(false);
 
   const handleModalState = ({ title = "", taskId = null }) => {
     setModalState((prevState) => ({
@@ -27,6 +28,14 @@ function useHomePage() {
       taskId,
       isOpen: !prevState.isOpen,
     }));
+  };
+
+  const handleToggleDeleteAllModalState = () => {
+    if (tasks.length === 0) {
+      toast.error('No tasks found to delete');
+      return
+    }
+    setIsDeleteAllModalOpen((prev) => !prev);
   };
 
   const handleInputChange = ({
@@ -158,11 +167,34 @@ function useHomePage() {
       })
     }, 500)
   }
+  const handleMarkAllComplete = () => {
+    if (tasks.length === 0) {
+      toast.error('No tasks to mark as complete. Please add a task first.');
+      return
+    }
+    setTasks(prevState => {
+      const updatedTasks = prevState.map(value => ({ ...value, isComplete: true }))
+
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+
+      return updatedTasks
+    })
+  }
+
+  console.log(tasks)
+
+  const handleDeleteAll = () => {
+    setTasks(prevState => {
+      const newTasks = [...prevState]
+      newTasks.length = 0
+      // localStorage.setItem("tasks", JSON.stringify(newTasks));
+      return newTasks
+    })
+    handleToggleDeleteAllModalState()
+  }
 
   const handleOnDragEnd = (result) => {
-    console.log(result)
     if (!result.destination) return;
-
 
     const updatedTasks = Array.from(tasks);
     const [movedTask] = updatedTasks.splice(result.source.index, 1);
@@ -178,6 +210,7 @@ function useHomePage() {
     tasks,
     modalState,
     removeIndex,
+    isDeleteAllModalOpen,
     handleModalState,
     handleTaskPriority,
     handleTaskSubmit,
@@ -186,6 +219,9 @@ function useHomePage() {
     handleTaskEdit,
     handleTaskUpdate,
     handleRemoveTask,
+    handleMarkAllComplete,
+    handleDeleteAll,
+    handleToggleDeleteAllModalState,
     handleOnDragEnd
   };
 }

@@ -1,5 +1,6 @@
 import { IoAdd } from "react-icons/io5";
 import TaskListing from "./TaskListing";
+import { MdMarkChatRead, MdDeleteSweep } from "react-icons/md";
 
 function MainBodySection({
     tasks,
@@ -10,6 +11,8 @@ function MainBodySection({
     handleTaskComplete,
     handleTaskEdit,
     handleRemoveTask,
+    handleMarkAllComplete,
+    handleToggleDeleteAllModalState,
     handleOnDragEnd
 }) {
     return (
@@ -27,6 +30,20 @@ function MainBodySection({
                     className="flex gap-x-2 items-center bg-primary hover:bg-white text-white hover:text-primary border border-primary px-5 py-2 text-sm rounded-lg"
                 >
                     Add Task <IoAdd size={18} />
+                </button>
+            </div>
+            <div className="mt-3 flex gap-x-3">
+                <button
+                    onClick={handleMarkAllComplete}
+                    className="flex gap-x-2 items-center border border-primary text-primary px-5 py-2 text-sm rounded-lg"
+                >
+                    Mark All as Complete <MdMarkChatRead size={18} />
+                </button>
+                <button
+                    onClick={handleToggleDeleteAllModalState}
+                    className="flex gap-x-2 items-center border border-primary text-primary px-5 py-2 text-sm rounded-lg"
+                >
+                    Delete All <MdDeleteSweep size={18} />
                 </button>
             </div>
             <TaskListing
