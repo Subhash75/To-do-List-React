@@ -10,6 +10,9 @@ export default {
         primary: "#e40404",
         secondary: "#fcd5d2",
         tertiary: "#FFC600",
+      },
+      screens: {
+        xs: "480px"
       }
     },
     fontFamily: {

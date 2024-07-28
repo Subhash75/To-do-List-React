@@ -181,13 +181,11 @@ function useHomePage() {
     })
   }
 
-  console.log(tasks)
-
   const handleDeleteAll = () => {
     setTasks(prevState => {
       const newTasks = [...prevState]
       newTasks.length = 0
-      // localStorage.setItem("tasks", JSON.stringify(newTasks));
+      localStorage.setItem("tasks", JSON.stringify(newTasks));
       return newTasks
     })
     handleToggleDeleteAllModalState()

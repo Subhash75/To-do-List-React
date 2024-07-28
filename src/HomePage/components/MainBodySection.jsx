@@ -16,9 +16,9 @@ function MainBodySection({
     handleOnDragEnd
 }) {
     return (
-        <div className="fixed px-3 py-5 w-[75%] h-[80%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white shadow-xl rounded-xl">
-            <div className="flex justify-between items-center">
-                <h1 className="font-MontserratSemiBold text-primary text-2xl tracking-wide">
+        <div className="fixed px-3 py-5 w-full xs:w-[90%] md:w-[75%] h-full xs:h-[80%] inset-0 xs:top-1/2 xs:left-1/2 xs:-translate-x-1/2 xs:-translate-y-1/2 bg-white shadow-xl rounded-none xs:rounded-xl">
+            <div className="flex flex-wrap justify-between items-center">
+                <h1 className="font-MontserratSemiBold text-primary text-xl xs:text-2xl tracking-wide">
                     To Do List
                 </h1>
                 <button
@@ -27,23 +27,23 @@ function MainBodySection({
                         handleTaskPriority({ taskPriority: "" });
                         handleInputChange({ e: null, type: "reset" });
                     }}
-                    className="flex gap-x-2 items-center bg-primary hover:bg-white text-white hover:text-primary border border-primary px-5 py-2 text-sm rounded-lg"
+                    className="flex gap-x-2 items-center bg-primary hover:bg-white text-white hover:text-primary border border-primary px-3 xs:px-5 py-1 xs:py-2 text-sm rounded-lg"
                 >
                     Add Task <IoAdd size={18} />
                 </button>
             </div>
-            <div className="mt-3 flex gap-x-3">
+            <div className="mt-6 xs:mt-3 flex flex-wrap gap-3">
                 <button
                     onClick={handleMarkAllComplete}
-                    className="flex gap-x-2 items-center border border-primary text-primary px-5 py-2 text-sm rounded-lg"
+                    className="flex gap-x-2 items-center border border-primary text-primary  px-3 xs:px-5 py-1 xs:py-2 text-sm rounded-lg"
                 >
                     Mark All as Complete <MdMarkChatRead size={18} />
                 </button>
                 <button
                     onClick={handleToggleDeleteAllModalState}
-                    className="flex gap-x-2 items-center border border-primary text-primary px-5 py-2 text-sm rounded-lg"
+                    className="flex gap-x-2 items-center border border-primary text-primary  px-3 xs:px-5 py-1 xs:py-2 text-sm rounded-lg"
                 >
-                    Delete All <MdDeleteSweep size={18} />
+                    Delete All <MdDeleteSweep size={24} />
                 </button>
             </div>
             <TaskListing

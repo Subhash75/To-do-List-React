@@ -28,8 +28,8 @@ function HomePage() {
         <>
             <main className="h-screen">
                 <div
-                    className="bg-no-repeat bg-contain h-1/2"
-                    style={{ backgroundImage: `url(${RedBg})`, backgroundSize: "100%" }}
+                    className="bg-no-repeat bg-cover h-1/2"
+                    style={{ backgroundImage: `url(${RedBg})`, backgroundSize: "100% 100%" }}
                 ></div>
                 <MainBodySection
                     tasks={tasks}

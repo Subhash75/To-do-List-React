@@ -19,7 +19,7 @@ function TaskModal({
             onClick={() => handleModalState({ title: "" })}
         >
             <div
-                className="bg-white rounded-xl w-[75%]"
+                className="bg-white rounded-xl w-[90%] md:w-[75%]"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex justify-between px-5 py-3 border-b-2">
@@ -34,9 +34,9 @@ function TaskModal({
                 </div>
 
                 <div className="px-5 py-3">
-                    <div className="flex items-center justify-between">
-                        <p className="w-[25%]">Task Name </p>
-                        <span className="mx-5 w-[5%]">:</span>
+                    <div className="flex flex-col sm:flex-row items-center flex-start sm:justify-between">
+                        <p className="w-full sm:w-[25%] mb-1 sm:mb-0">Task Name </p>
+                        <span className="mx-5 w-[5%] hidden sm:inline-block">:</span>
                         <input
                             name="taskName"
                             value={taskName}
@@ -45,14 +45,14 @@ function TaskModal({
                             onChange={(e) => handleInputChange({ e, type: 'taskName' })}
                         />
                     </div>
-                    <div className="flex items-center mt-3">
-                        <p className="w-[25%]">Task Priority</p>
-                        <span className="mx-5 w-[5%]">:</span>
+                    <div className="flex flex-col sm:flex-row items-center my-4 sm:my-0 sm:mt-3">
+                        <p className="w-full sm:w-[25%] mb-1 sm:mb-0">Task Priority</p>
+                        <span className="mx-5 w-[5%] hidden sm:inline-block">:</span>
 
-                        <div className="w-full flex gap-x-3">
+                        <div className="w-full flex flex-wrap gap-3">
                             <button
                                 onClick={() => handleTaskPriority({ taskPriority: "Critical" })}
-                                className={`border border-primary px-5 py-2 rounded-lg ${taskPriority === "Critical"
+                                className={`border border-primary px-3 xs:px-5 py-1 xs:py-2 text-sm xs:text-base rounded-lg ${taskPriority === "Critical"
                                     ? "text-white bg-primary"
                                     : "text-primary bg-white"
                                     }`}
@@ -61,7 +61,7 @@ function TaskModal({
                             </button>
                             <button
                                 onClick={() => handleTaskPriority({ taskPriority: "Intermediate" })}
-                                className={`border bg-white px-5 py-2 rounded-lg ${taskPriority === "Intermediate"
+                                className={`border bg-white px-3 xs:px-5 py-1 xs:py-2 text-sm xs:text-base rounded-lg ${taskPriority === "Intermediate"
                                     ? "text-white !bg-tertiary"
                                     : "border-tertiary text-tertiary"
                                     }`}
@@ -70,7 +70,7 @@ function TaskModal({
                             </button>
                             <button
                                 onClick={() => handleTaskPriority({ taskPriority: "Basic" })}
-                                className={`border bg-white px-5 py-2 rounded-lg ${taskPriority === "Basic"
+                                className={`border bg-white px-3 xs:px-5 py-1 xs:py-2 text-sm xs:text-base rounded-lg ${taskPriority === "Basic"
                                     ? "text-white !bg-green-500"
                                     : "border-green-500 text-green-500"
                                     }`}
@@ -79,9 +79,9 @@ function TaskModal({
                             </button>
                         </div>
                     </div>
-                    <div className="flex mt-3">
-                        <p className="w-[25%]">Task Description</p>
-                        <span className="mx-5 w-[5%]">:</span>
+                    <div className="flex flex-col sm:flex-row mt-3">
+                        <p className="w-full sm:w-[25%] mb-1 sm:mb-0">Task Description</p>
+                        <span className="mx-5 w-[5%] hidden sm:inline-block">:</span>
                         <textarea
                             name='taskDescription'
                             value={taskDescription}
